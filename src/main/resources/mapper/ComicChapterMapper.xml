@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ouyanglol.dao.ComicChapterMapper">
+  <resultMap id="BaseResultMap" type="com.ouyanglol.model.ComicChapter">
+    <!--          -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="basic_id" jdbcType="VARCHAR" property="basicId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="chapter_no" jdbcType="INTEGER" property="chapterNo" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="origin_name" jdbcType="VARCHAR" property="originName" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--          -->
+    id, basic_id, name, chapter_no, status, origin_name, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--          -->
+    select
+    <include refid="Base_Column_List" />
+    from comic_chapter
+    where 1=1 AND status = 1 id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--          -->
+    delete from comic_chapter
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ouyanglol.model.ComicChapter">
+    <!--          -->
+    insert into comic_chapter (id, basic_id, name,
+    chapter_no, status, origin_name,
+    create_date, update_date)
+    values (#{id,jdbcType=VARCHAR}, #{basicId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+    #{chapterNo,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{originName,jdbcType=VARCHAR},
+    #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ouyanglol.model.ComicChapter">
+    <!--          -->
+    insert into comic_chapter
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="basicId != null">
+        basic_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="chapterNo != null">
+        chapter_no,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="originName != null">
+        origin_name,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="basicId != null">
+        #{basicId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="chapterNo != null">
+        #{chapterNo,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="originName != null">
+        #{originName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ouyanglol.model.ComicChapter">
+    <!--          -->
+    update comic_chapter
+    <set>
+      <if test="basicId != null">
+        basic_id = #{basicId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="chapterNo != null">
+        chapter_no = #{chapterNo,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="originName != null">
+        origin_name = #{originName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ouyanglol.model.ComicChapter">
+    <!--          -->
+    update comic_chapter
+    set basic_id = #{basicId,jdbcType=VARCHAR},
+    name = #{name,jdbcType=VARCHAR},
+    chapter_no = #{chapterNo,jdbcType=INTEGER},
+    status = #{status,jdbcType=INTEGER},
+    origin_name = #{originName,jdbcType=VARCHAR},
+    create_date = #{createDate,jdbcType=TIMESTAMP},
+    update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="select" resultType="com.ouyanglol.model.ComicChapter">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM comic_chapter
+    WHERE 1=1
+    <if test="basicId != null">
+      AND basic_id = #{basicId,jdbcType=VARCHAR}
+    </if>
+    <if test="name != null">
+      AND name = #{name,jdbcType=VARCHAR}
+    </if>
+    <if test="chapterNo != null">
+      AND chapter_no = #{chapterNo,jdbcType=INTEGER}
+    </if>
+    <if test="status != null">
+      AND status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="originName != null">
+      AND origin_name = #{originName,jdbcType=VARCHAR}
+    </if>
+    LIMIT 1
+  </select>
+
+  <select id="getIdByName" resultType="java.lang.String">
+    SELECT id
+    FROM comic_chapter
+    WHERE name = #{name}
+    limit 1
+  </select>
+
+</mapper>
