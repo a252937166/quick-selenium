@@ -1,10 +1,10 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 阿里
+ Source Server         : 本地
  Source Server Type    : MySQL
  Source Server Version : 50720
- Source Host           : 47.94.107.246
+ Source Host           : 127.0.0.1
  Source Database       : comic
 
  Target Server Type    : MySQL
