@@ -104,9 +104,9 @@ public class ComicCrawler {
 //                    webDriver = webDriverPool.get();
 //                }
                 System.out.println(chapterVoQueue.size());
-                if (chapterVoQueue.size()==71) {
-                    System.out.println("ddd");
-                }
+//                if (chapterVoQueue.size()==71) {
+//                    System.out.println("ddd");
+//                }
                 ParseChapterVo vo = chapterVoQueue.take();
                 System.out.println(vo.getChapterUrl());
                 System.out.println("startGET");
