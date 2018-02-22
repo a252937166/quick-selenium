@@ -17,6 +17,6 @@ public class App {
         System.getProperties().setProperty("webdriver.chrome.driver", System.getProperty("webdriver.chrome.driver", System.getenv("CHROMEDRIVER_PATH") == null ? "src/main/resources/chromedriver" : System.getenv("CHROMEDRIVER_PATH")));
         QuickBase quickBase = QuickBase.getInstance("crawler");
         ComicCrawler crawler = (ComicCrawler) quickBase.getQuick("ComicCrawler");
-        crawler.start("https://manhua.dmzj.com/yiquanchaoren/");
+        crawler.start("https://manhua.dmzj.com/yiquanchaoren/");//一拳超人爬虫开始网址
     }
 }
