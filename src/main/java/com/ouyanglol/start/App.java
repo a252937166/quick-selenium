@@ -2,10 +2,7 @@ package com.ouyanglol.start;
 
 import com.ouyanglol.core.QuickBase;
 import com.ouyanglol.crawler.ComicCrawler;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Package: com.ouyanglol.start
