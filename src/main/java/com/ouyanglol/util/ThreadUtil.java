@@ -8,7 +8,7 @@ import java.util.concurrent.Future;
 public class ThreadUtil {  
       
     /**长时间线程池的最大线程数量*/  
-    private static final int MAX_THREAD = 10;
+    private static final int MAX_THREAD = 8;
       
     /**长时间线程的超时时间,如果线程执行时间超过这个时间会自动释放*/  
     private static final int LONG_TIMEOUT_TIME = 600000;
@@ -46,11 +46,11 @@ public class ThreadUtil {
      *  
      * @throws Exception 
      * */  
-    public static synchronized void getLongTimeOutThread(Runnable runnable) throws Exception{  
+    public static synchronized void getLongTimeOutThread(Runnable runnable) throws Exception{
             //将线程提交到短时间线程池中,然后会得到一个Future  
             Future<String> future = (Future<String>) longTimeThreadPool.submit(runnable);  
             //启动一个守护线程，这个线程将计算超时  
-            new ThreadUtil().monitorThreadTime(LONG_TIMEOUT_TIME,future);  
+//            new ThreadUtil().monitorThreadTime(LONG_TIMEOUT_TIME,future);
     }  
       
     /** 
@@ -66,7 +66,7 @@ public class ThreadUtil {
             //将线程提交到短时间线程池中,然后会得到一个Future  
             Future<String> future = (Future<String>) longTimeThreadPool.submit(runnable);  
             //启动一个守护线程，这个线程将计算超时  
-            new ThreadUtil().monitorThreadTime(timeOutTime,future);  
+            new ThreadUtil().monitorThreadTime(timeOutTime,future);
     }  
       
       
