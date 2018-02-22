@@ -23,9 +23,6 @@ public class ComicContentService {
     @Autowired
     QiniuUtil qiniuUtil;
     public ComicContent insert(ComicContent comicContent) {
-        comicContent.setCreateDate(new Date());
-        comicContent.setUpdateDate(new Date());
-        System.out.println(new Date());
         if (comicContentMapper.insertSelective(comicContent)>0) {
             return comicContent;
         }

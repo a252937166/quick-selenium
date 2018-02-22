@@ -37,13 +37,10 @@ public class QiniuUtil {
     @Value("${qiniu_cdn}")
     private String CDN;
 
+    private UploadManager uploadManager = new UploadManager(new Configuration(Zone.zone2()));
+
 
     public String uploadImg(String fileName,byte[] fileBytes) {
-        //构造一个带指定Zone对象的配置类
-        Configuration cfg = new Configuration(Zone.zone2());
-        //...其他参数参考类注释
-        UploadManager uploadManager = new UploadManager(cfg);
-        //...生成上传凭证，然后准备上传
         Auth auth = Auth.create(AK, SK);
         String upToken = auth.uploadToken(BUCKET);
         DefaultPutRet putRet = null;

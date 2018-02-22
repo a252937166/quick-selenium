@@ -14,6 +14,8 @@ import com.ouyanglol.vo.ParseContentVo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
@@ -89,14 +91,34 @@ public class ComicCrawler {
                 chapterVoQueue.offer(parseChapterVo);
             }
         }
+        webDriver.quit();
     }
 
     public void parseChapter () {
         try {
             WebDriver webDriver = webDriverPool.get();
+            int i = 0;
             while (true) {
+//                if (i%50==0) {
+//                    webDriver.quit();
+//                    webDriver = webDriverPool.get();
+//                }
+                System.out.println(chapterVoQueue.size());
+                if (chapterVoQueue.size()==71) {
+                    System.out.println("ddd");
+                }
                 ParseChapterVo vo = chapterVoQueue.take();
+                System.out.println(vo.getChapterUrl());
+                System.out.println("startGET");
                 webDriver.get(vo.getChapterUrl());
+                System.out.println("endGET");
+                WebDriverWait webDriverWait = new WebDriverWait(webDriver,20);
+                WebElement element = webDriverWait.until(new ExpectedCondition<WebElement>() {
+                    @Override
+                    public WebElement apply(WebDriver d) {
+                        return d.findElement(By.id("page_select"));
+                    }
+                });
                 String chapterName = webDriver.findElement(By.xpath("//span[@class='redhotl']")).getText();//章节名
                 String http = webDriver.getCurrentUrl().split("://")[0];//http或者https
                 //解析第几话
@@ -127,6 +149,7 @@ public class ComicCrawler {
                 Pattern pageNumberPattern = Pattern.compile("^第" + "\\s*(\\d+)页");
                 for (WebElement e : pageList) {
                     String pageStr = e.getText();
+                    System.out.println(pageStr);
                     String contentUrl = http + ":" + e.getAttribute("value");
                     ParseContentVo parseContentVo = new ParseContentVo();
                     Matcher pageNumberMatcher = pageNumberPattern.matcher(pageStr);
@@ -142,11 +165,14 @@ public class ComicCrawler {
                     parseContentVo.setFileName(fileName);
                     //异步保存每一页的信息
                     try {
+                        System.out.println("3.1");
                         ThreadUtil.getLongTimeOutThread(()->comicContentService.insertByParseVo(parseContentVo));
+                        System.out.println("3.2");
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }
                 }
+                i++;
             }
         } catch(InterruptedException e){
             e.printStackTrace();
