@@ -18,6 +18,6 @@ public class App {
         System.getProperties().setProperty("webdriver.chrome.driver", "/Users/Ouyang/Documents/myProjects/chromedriver");
         QuickBase quickBase = QuickBase.getInstance("crawler");
         ComicCrawler crawler = (ComicCrawler) quickBase.getQuick("ComicCrawler");
-        crawler.start("https://manhua.dmzj.com/yiquanchaoren/");
+        crawler.start("https://manhua.dmzj.com/yiquanchaoren/");//一拳超人爬虫开始网址
     }
 }
