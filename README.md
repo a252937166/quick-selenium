@@ -1,5 +1,3 @@
-[TOC]
-
 >我之前推荐过大家使用`seimiagent+seimicrawler`，但是经过我多次试验，在爬取任务过多，比如线程数超过几十的时候，`seimiagent`会经常崩溃，当然这也和启动`seimiagent`的服务器有关。
 >鉴于`seimiagent`的性能不适合普通装备的爬虫爱好者，我重新写了一款`quick-spring+selenium`的最简爬虫案例，供大家参考。
 
