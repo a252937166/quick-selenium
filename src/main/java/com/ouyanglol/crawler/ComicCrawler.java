@@ -165,9 +165,7 @@ public class ComicCrawler {
                     parseContentVo.setFileName(fileName);
                     //异步保存每一页的信息
                     try {
-                        System.out.println("3.1");
                         ThreadUtil.getLongTimeOutThread(()->comicContentService.insertByParseVo(parseContentVo));
-                        System.out.println("3.2");
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }
