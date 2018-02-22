@@ -19,7 +19,7 @@ https://github.com/a252937166/quick-selenium.git
 
 ## 结构
 
-<center>![这里写图片描述](http://img.blog.csdn.net/20180222154513927?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTXJfT09P/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)</center>
+![这里写图片描述](http://img.blog.csdn.net/20180222154513927?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTXJfT09P/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 <center>**图(1)**</center>
 
@@ -123,9 +123,3 @@ qiniuUtil.uploadImg(fileName,imageUrl,chapterUrl);//把图片保存到七牛云�
 ## comic.sql
 
 运行其中sql，初始化数据库，最后启动`App.java`中的`main()`方法就可以了。
-
-# 同系列文章
-
-[java爬虫系列（一）——爬虫入门](https://blog.ouyanglol.com/article/details/256015)
-[java爬虫系列（二）——爬取动态网页](https://blog.ouyanglol.com/article/details/254973)
-[java爬虫系列（三）——漫画网站爬取实战](https://blog.ouyanglol.com/article/details/254652)
